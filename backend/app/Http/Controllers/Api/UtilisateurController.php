@@ -12,15 +12,18 @@ use Illuminate\Validation\Rule;
 class UtilisateurController extends Controller
 {
     public function index(Request $request)
-    {
-        $liste = Utilisateur::orderBy('nom_utilisateur')->get()->map(fn ($u) => $u->toArray() + ['role' => $u->role()]);
+{
+    $liste = Utilisateur::orderBy('nom_utilisateur')->get()->map(fn ($u) => $u->toArray() + [
+        'role' => $u->role(),
+        'profil_id' => $u->profilId(),   // id_collecteur, id_servicet, etc.
+    ]);
 
-        if ($request->filled('role')) {
-            $liste = $liste->where('role', $request->role)->values();
-        }
-
-        return $liste;
+    if ($request->filled('role')) {
+        $liste = $liste->where('role', $request->role)->values();
     }
+
+    return $liste;
+}
 
     public function store(Request $request)
     {

@@ -8,7 +8,6 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-/** Vente aux partenaires (OP9, RG-15, RG-16). */
 class TransactionController extends Controller
 {
     public function index(Request $request)

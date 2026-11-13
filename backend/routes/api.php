@@ -89,4 +89,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/dechets', [DechetTrieController::class, 'index'])->middleware('role:client,service_trie,admin');
     Route::get('/stock', [DechetTrieController::class, 'stock'])->middleware('role:partenaire,service_trie,admin');
     Route::get('/transactions', [TransactionController::class, 'index'])->middleware('role:partenaire,service_trie,admin');
+    Route::get('/partenaires', fn () => \App\Models\Partenaire::with('utilisateur')->get())
+    ->middleware('role:service_trie,admin');
 });
